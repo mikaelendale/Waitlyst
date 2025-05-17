@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Models\waitlist_entries;
-use App\Http\Requests\Storewaitlist_entriesRequest;
-use App\Http\Requests\Updatewaitlist_entriesRequest;
-use App\Models\WaitlistEntry;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
-class WaitlistEntriesController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return Inertia::render('dashboard', with(['success', 'message' => 'Welcome to your dashboard!']));
     }
 
     /**
@@ -28,7 +27,7 @@ class WaitlistEntriesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Storewaitlist_entriesRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -36,7 +35,7 @@ class WaitlistEntriesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(WaitlistEntry $waitlist_entry)
+    public function show(string $id)
     {
         //
     }
@@ -44,7 +43,7 @@ class WaitlistEntriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(WaitlistEntry $waitlist_entry)
+    public function edit(string $id)
     {
         //
     }
@@ -52,7 +51,7 @@ class WaitlistEntriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Updatewaitlist_entriesRequest $request, WaitlistEntry $waitlist_entry)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -60,7 +59,7 @@ class WaitlistEntriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(WaitlistEntry $waitlist_entry)
+    public function destroy(string $id)
     {
         //
     }
