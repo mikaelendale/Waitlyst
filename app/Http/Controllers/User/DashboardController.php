@@ -17,13 +17,6 @@ class DashboardController extends Controller
     }
 
     /**
-     * Display a demo page.
-     */
-    public function demo(){
-        return redirect()->route('dashboard')->with('success', 'Welcome to your dashboard!');
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
     public function create()

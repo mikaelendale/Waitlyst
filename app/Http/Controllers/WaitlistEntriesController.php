@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\waitlist_entries;
 use App\Http\Requests\Storewaitlist_entriesRequest;
 use App\Http\Requests\Updatewaitlist_entriesRequest;
+use App\Models\Location;
 use App\Models\WaitlistEntry;
 
 class WaitlistEntriesController extends Controller
@@ -14,7 +15,9 @@ class WaitlistEntriesController extends Controller
      */
     public function index()
     {
-        //
+        return inertia('user/waitlist-entry', [
+            'waitlist_entries' => WaitlistEntry::with('location')->get(),
+        ]);
     }
 
     /**
@@ -22,7 +25,9 @@ class WaitlistEntriesController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('user/waitlist-entry-create', [
+            'locations' => Location::all(),
+        ]);
     }
 
     /**

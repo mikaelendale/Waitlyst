@@ -13,12 +13,11 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('home', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('demo', [DashboardController::class, 'demo'])->name('demo');
 });
 
 Route::middleware(['auth',  'verified'])->group(function () {
     Route::resource('locations', LocationController::class);
-    Route::resource('waitlist-entries', WaitlistEntriesController::class);
+    Route::resource('waitlist', WaitlistEntriesController::class);
 });
 
 Route::post('/leads', [LeadsController::class, 'store']);

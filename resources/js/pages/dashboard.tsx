@@ -1,9 +1,10 @@
-import { Button } from '@/components/ui/button';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
+import TodaysQueuesCard from '@/components/user/queqe';
+import WaitingList from '@/components/user/waiting_list';
+import LocationCard from '@/components/user/waitlist-card';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
-import { toast } from 'sonner';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -12,41 +13,41 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
+const location = {
+    name: 'Downtown Cafe',
+    slug: 'downtown-cafe',
+    currentlyWaiting: 12,
+    entriesToday: 45,
+    servedToday: 33,
+};
+const queues = [
+    {
+        id: '1',
+        name: 'Regular Service',
+        waitTime: 25,
+        peopleCount: 8,
+        status: 'normal' as const,
+    },
+    {
+        id: '2',
+        name: 'Express Checkout',
+        waitTime: 10,
+        peopleCount: 4,
+        status: 'slow' as const,
+    }, 
+];
 export default function Home() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Home" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                    <div className="border-sidebar-border/70 dark:border-sidebar-border relative aspect-video overflow-hidden rounded-xl border">
-                        <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-                    </div>
-                    <Button>
-                        <a href="/demo">toast</a>
-                    </Button>
-                    <Button
-                        variant="outline"
-                        onClick={() =>
-                            toast('Event has been created', {
-                                description: 'Sunday, December 03, 2023 at 9:00 AM',
-                                action: {
-                                    label: 'Undo',
-                                    onClick: () => console.log('Undo'),
-                                },
-                            })
-                        }
-                    >
-                        Show Toast
-                    </Button>
-                    <div className="border-sidebar-border/70 dark:border-sidebar-border relative aspect-video overflow-hidden rounded-xl border">
-                        <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-                    </div>
-                    <div className="border-sidebar-border/70 dark:border-sidebar-border relative aspect-video overflow-hidden rounded-xl border">
-                        <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-                    </div>
+                <div className="grid auto-rows-min gap-4 md:grid-cols-2">
+                    <LocationCard location={location} />
+                    <TodaysQueuesCard queues={queues} />
                 </div>
-                <div className="border-sidebar-border/70 dark:border-sidebar-border relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border md:min-h-min">
-                    <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+                <div className="border-sidebar-border/70 dark:border-sidebar-border relative flex-1 overflow-hidden">
+                    <h1 className="mb-6 text-2xl font-bold">Card List</h1>
+                    <WaitingList />
                 </div>
             </div>
         </AppLayout>

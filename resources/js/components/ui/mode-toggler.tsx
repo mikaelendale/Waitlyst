@@ -10,7 +10,7 @@ export default function ModeToggler({ className = '', ...props }) {
             type="button"
             aria-label="Toggle dark mode"
             onClick={() => updateAppearance(isDark ? 'light' : 'dark')}
-            className={`inline-flex items-center rounded-full p-2 transition-colors bg-neutral-200 dark:bg-neutral-700 ${className}`}
+            className={`inline-flex items-center rounded-full p-2 transition-colors ${className}`}
             {...props}
         >
             {isDark ? (
