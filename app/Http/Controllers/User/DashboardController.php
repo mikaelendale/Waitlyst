@@ -13,7 +13,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return Inertia::render('dashboard', with(['success', 'message' => 'Welcome to your dashboard!']));
+        return Inertia::render('dashboard');
+    }
+
+    /**
+     * Display a demo page.
+     */
+    public function demo(){
+        return redirect()->route('dashboard')->with('success', 'Welcome to your dashboard!');
     }
 
     /**

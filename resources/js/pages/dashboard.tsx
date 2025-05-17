@@ -1,7 +1,9 @@
+import { Button } from '@/components/ui/button';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
+import { toast } from 'sonner';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -19,6 +21,23 @@ export default function Home() {
                     <div className="border-sidebar-border/70 dark:border-sidebar-border relative aspect-video overflow-hidden rounded-xl border">
                         <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
                     </div>
+                    <Button>
+                        <a href="/demo">toast</a>
+                    </Button>
+                    <Button
+                        variant="outline"
+                        onClick={() =>
+                            toast('Event has been created', {
+                                description: 'Sunday, December 03, 2023 at 9:00 AM',
+                                action: {
+                                    label: 'Undo',
+                                    onClick: () => console.log('Undo'),
+                                },
+                            })
+                        }
+                    >
+                        Show Toast
+                    </Button>
                     <div className="border-sidebar-border/70 dark:border-sidebar-border relative aspect-video overflow-hidden rounded-xl border">
                         <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
                     </div>
