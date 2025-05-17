@@ -11,6 +11,10 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: 'Home',
         href: '/home',
     },
+    {
+        title: 'Dashboard',
+        href: '/home',
+    },
 ];
 
 const location = {
