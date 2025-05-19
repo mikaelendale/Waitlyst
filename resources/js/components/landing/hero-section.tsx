@@ -17,13 +17,13 @@ export default function HeroSection() {
 
                     <div className="flex flex-col items-center gap-2 *:w-full sm:flex-row sm:justify-center sm:*:w-auto">
                         <Button asChild variant="default">
-                            <Link href="#link">
-                                <span className="text-nowrap">Join the Waitlist</span>
+                            <Link href="/agents">
+                                <span className="text-nowrap">Place a Waitlist Entry</span>
                             </Link>
                         </Button>
                         <Button asChild variant="ghost">
-                            <Link href="#link">
-                                <span className="text-nowrap">Live Demo</span>
+                            <Link href="/login">
+                                <span className="text-nowrap">Login as Agent</span>
                             </Link>
                         </Button>
                     </div>

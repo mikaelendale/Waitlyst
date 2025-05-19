@@ -1,20 +1,16 @@
-import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
+import { AdminDashboard } from '@/components/admin/admin_dashboard';
 import TodaysQueuesCard from '@/components/user/queqe';
-import WaitingList from '@/components/user/waiting_list';
 import LocationCard from '@/components/user/waitlist-card';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
+import { ChartNoAxesCombinedIcon, User } from 'lucide-react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Home',
-        href: '/home',
-    },
-    {
-        title: 'Dashboard',
-        href: '/home',
-    },
+        href: '#',
+    }, 
 ];
 
 const location = {
@@ -38,22 +34,26 @@ const queues = [
         waitTime: 10,
         peopleCount: 4,
         status: 'slow' as const,
-    }, 
+    },
 ];
 export default function Home() {
+    const { auth } = usePage().props;
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Home" />
-            <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <div className="grid auto-rows-min gap-4 md:grid-cols-2">
-                    <LocationCard location={location} />
-                    <TodaysQueuesCard queues={queues} />
+
+            {auth.user.role === 'admin' &&
+                <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
+                    <AdminDashboard />
+                </div>}
+            {auth.user.role === 'user' && (
+                <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
+                    <div className="grid auto-rows-min gap-4 md:grid-cols-2">
+                        <LocationCard location={location} />
+                        <TodaysQueuesCard queues={queues} />
+                    </div>
                 </div>
-                <div className="border-sidebar-border/70 dark:border-sidebar-border relative flex-1 overflow-hidden">
-                    <h1 className="mb-6 text-2xl font-bold">Card List</h1>
-                    <WaitingList />
-                </div>
-            </div>
+            )}
         </AppLayout>
     );
 }
